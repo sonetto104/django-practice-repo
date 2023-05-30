@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-taskmanager-app.herokuapp.com']
+ALLOWED_HOSTS = [os.environ.get('HEROKU_HOST')]
 
 
 # Application definition
@@ -82,8 +82,11 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://dsejzpud:qRVLaLGyDaUE0pz8cOqM0lMv7ME2CLD0@lucky.db.elephantsql.com/dsejzpud')
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
+
+# SECRET KEY
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # Password validation
